@@ -1,0 +1,123 @@
+SET
+DROP TABLE
+CREATE TABLE
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=83660.200..83660.201 rows=0 loops=1)
+   Buffers: shared hit=20850955 read=425638 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.268
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3224.398..6561.093 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.097 ms
+ Execution Time: 83697.431 ms
+(9 rows)
+
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=85499.053..85499.054 rows=0 loops=1)
+   Buffers: shared hit=20850959 read=425637 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.258
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3403.544..6847.726 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.051 ms
+ Execution Time: 85536.737 ms
+(9 rows)
+
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=85716.443..85716.444 rows=0 loops=1)
+   Buffers: shared hit=20850960 read=425636 dirtied=425636 written=18, temp read=41501 written=41501
+   I/O Timings: read=0.258 write=0.081
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3417.123..6826.293 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.051 ms
+ Execution Time: 85752.647 ms
+(9 rows)
+
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=85831.778..85831.779 rows=0 loops=1)
+   Buffers: shared hit=20850959 read=425637 dirtied=425637 written=5, temp read=41501 written=41501
+   I/O Timings: read=0.259 write=0.052
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3450.885..6868.235 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.055 ms
+ Execution Time: 85872.891 ms
+(9 rows)
+
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=86622.174..86622.175 rows=0 loops=1)
+   Buffers: shared hit=20850960 read=425636 dirtied=425636 written=5, temp read=41501 written=41501
+   I/O Timings: read=0.271 write=0.051
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3437.820..6882.750 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.051 ms
+ Execution Time: 86661.017 ms
+(9 rows)
+
+ pg_size_pretty 
+----------------
+ 16 GB
+(1 row)
+
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..2872341.00 rows=74468100 width=200) (actual time=0.497..384226.974 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=3755 read=2123905 dirtied=2106936 written=13
+   I/O Timings: read=364381.256 write=0.061
+ Planning Time: 3.713 ms
+ Execution Time: 388818.246 ms
+(6 rows)
+
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127670.53 rows=100001053 width=137) (actual time=1.018..98353.739 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=496847 read=1630813 dirtied=395
+   I/O Timings: read=88913.625
+ Planning Time: 13.342 ms
+ Execution Time: 102701.428 ms
+(6 rows)
+
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127670.53 rows=100001053 width=137) (actual time=0.005..97426.062 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=497241 read=1630419
+   I/O Timings: read=87994.054
+ Planning Time: 0.030 ms
+ Execution Time: 101762.500 ms
+(6 rows)
+
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127670.53 rows=100001053 width=137) (actual time=0.006..97409.066 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=497246 read=1630414
+   I/O Timings: read=87968.147
+ Planning Time: 0.032 ms
+ Execution Time: 101759.906 ms
+(6 rows)
+
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127670.53 rows=100001053 width=137) (actual time=0.006..97015.157 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=497247 read=1630413
+   I/O Timings: read=87707.332
+ Planning Time: 0.031 ms
+ Execution Time: 101295.666 ms
+(6 rows)
+

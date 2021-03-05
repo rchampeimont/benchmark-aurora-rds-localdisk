@@ -1,0 +1,266 @@
+-- Create the table which will receive test data
+DROP TABLE IF EXISTS benchmark;
+DROP TABLE
+CREATE TABLE benchmark (
+    d1 double precision,
+    d2 double precision,
+    d3 double precision,
+    d4 double precision,
+    d5 double precision,
+    s1 text,
+    s2 text,
+    s3 text,
+    s4 text,
+    s5 text
+)
+-- We don't want autovacuum to run at a random moment in our benchmark
+WITH (autovacuum_enabled = false);
+CREATE TABLE
+-- Write benchmark (5 x 2E7 rows = 100 M rows)
+-- We use constant values so that the CPU is as least used as possible
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=34177.791..34177.791 rows=0 loops=1)
+   Buffers: shared hit=20850955 read=425638 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.193
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3181.120..6469.346 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.058 ms
+ Execution Time: 34211.203 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=29466.337..29466.338 rows=0 loops=1)
+   Buffers: shared hit=20850959 read=425637 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.249
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3492.262..7273.443 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.054 ms
+ Execution Time: 29504.111 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=29021.477..29021.478 rows=0 loops=1)
+   Buffers: shared hit=20850960 read=425636 dirtied=425636, temp read=41501 written=41501
+   I/O Timings: read=0.263
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3240.211..7013.790 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.095 ms
+ Execution Time: 29071.085 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=29201.343..29201.344 rows=0 loops=1)
+   Buffers: shared hit=20850959 read=425637 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.265
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3187.319..7023.612 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.047 ms
+ Execution Time: 29233.738 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark  (cost=0.00..10.00 rows=1000 width=200) (actual time=29627.237..29627.238 rows=0 loops=1)
+   Buffers: shared hit=20850960 read=425636 dirtied=425636, temp read=41501 written=41501
+   I/O Timings: read=0.258
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3486.423..7240.157 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.051 ms
+ Execution Time: 29660.828 ms
+(9 rows)
+
+-- Print table size
+SELECT pg_size_pretty( pg_relation_size('benchmark'));
+ pg_size_pretty 
+----------------
+ 16 GB
+(1 row)
+
+-- VACUUM table manually (since we disabled autovacuum)
+VACUUM ANALYZE benchmark;
+VACUUM
+-- Here we write a second table so that the first table gets removed from the cache
+-- (the second table has a size >= the entire RAM of the machine)
+DROP TABLE IF EXISTS benchmark2;
+DROP TABLE
+CREATE TABLE benchmark2 (
+    d1 double precision,
+    d2 double precision,
+    d3 double precision,
+    d4 double precision,
+    d5 double precision,
+    s1 text,
+    s2 text,
+    s3 text,
+    s4 text,
+    s5 text
+)
+-- We don't want autovacuum to run at a random moment in our benchmark
+WITH (autovacuum_enabled = false);
+CREATE TABLE
+-- Write to second table
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark2 SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark2  (cost=0.00..10.00 rows=1000 width=200) (actual time=29707.286..29707.287 rows=0 loops=1)
+   Buffers: shared hit=20850955 read=425638 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.262
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3230.516..7212.795 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.045 ms
+ Execution Time: 29809.143 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark2 SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark2  (cost=0.00..10.00 rows=1000 width=200) (actual time=29305.123..29305.124 rows=0 loops=1)
+   Buffers: shared hit=20850959 read=425637 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.259
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3335.787..6889.025 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.068 ms
+ Execution Time: 29348.111 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark2 SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark2  (cost=0.00..10.00 rows=1000 width=200) (actual time=29393.463..29393.464 rows=0 loops=1)
+   Buffers: shared hit=20850960 read=425636 dirtied=425636, temp read=41501 written=41501
+   I/O Timings: read=0.270
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3476.869..7043.345 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.047 ms
+ Execution Time: 29446.793 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark2 SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark2  (cost=0.00..10.00 rows=1000 width=200) (actual time=29608.590..29608.591 rows=0 loops=1)
+   Buffers: shared hit=20850959 read=425637 dirtied=425637, temp read=41501 written=41501
+   I/O Timings: read=0.266
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3174.576..7047.542 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.048 ms
+ Execution Time: 29644.200 ms
+(9 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) INSERT INTO benchmark2 SELECT 0.5487519831907406, 0.4872935938111851, 0.49332102249181675, 0.7625924579550725, 0.05153777115574787, '0.9926690628615165', '0.018826968012793932', '0.4878975579926579', '0.5737164736350058', '0.9911040422334372' FROM generate_series(1, 2E7) AS v;
+                                                                                                                                                                            QUERY PLAN                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Insert on public.benchmark2  (cost=0.00..10.00 rows=1000 width=200) (actual time=29412.823..29412.824 rows=0 loops=1)
+   Buffers: shared hit=20850960 read=425636 dirtied=425636, temp read=41501 written=41501
+   I/O Timings: read=0.263
+   ->  Function Scan on pg_catalog.generate_series v  (cost=0.00..10.00 rows=1000 width=200) (actual time=3488.196..6990.277 rows=20000000 loops=1)
+         Output: '0.548751983190741'::double precision, '0.487293593811185'::double precision, '0.493321022491817'::double precision, '0.762592457955072'::double precision, '0.0515377711557479'::double precision, '0.9926690628615165'::text, '0.018826968012793932'::text, '0.4878975579926579'::text, '0.5737164736350058'::text, '0.9911040422334372'::text
+         Function Call: generate_series('1'::numeric, '20000000'::numeric)
+         Buffers: temp read=41501 written=41501
+ Planning Time: 0.062 ms
+ Execution Time: 29455.860 ms
+(9 rows)
+
+-- Print second table size
+SELECT pg_size_pretty( pg_relation_size('benchmark2'));
+ pg_size_pretty 
+----------------
+ 16 GB
+(1 row)
+
+-- Perform the read benchmark on the first table
+-- With cold cache
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) SELECT * FROM benchmark;
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127660.16 rows=100000016 width=137) (actual time=0.454..72136.489 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared read=2127660
+   I/O Timings: read=63462.535
+ Planning Time: 0.856 ms
+ Execution Time: 76311.803 ms
+(6 rows)
+
+-- Run it 5 times more now that the cache is hot to measure read time with hot cache
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) SELECT * FROM benchmark;
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127660.16 rows=100000016 width=137) (actual time=0.420..69255.190 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=32 read=2127628
+   I/O Timings: read=60602.967
+ Planning Time: 0.029 ms
+ Execution Time: 73429.808 ms
+(6 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) SELECT * FROM benchmark;
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127660.16 rows=100000016 width=137) (actual time=0.470..62542.635 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=64 read=2127596
+   I/O Timings: read=53892.228
+ Planning Time: 0.028 ms
+ Execution Time: 66705.216 ms
+(6 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) SELECT * FROM benchmark;
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127660.16 rows=100000016 width=137) (actual time=0.414..66987.428 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=96 read=2127564
+   I/O Timings: read=58316.099
+ Planning Time: 0.030 ms
+ Execution Time: 71169.127 ms
+(6 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) SELECT * FROM benchmark;
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127660.16 rows=100000016 width=137) (actual time=0.465..71880.437 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=128 read=2127532
+   I/O Timings: read=63222.135
+ Planning Time: 0.029 ms
+ Execution Time: 76051.944 ms
+(6 rows)
+
+EXPLAIN (ANALYZE, COSTS, VERBOSE, BUFFERS) SELECT * FROM benchmark;
+                                                              QUERY PLAN                                                              
+--------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on public.benchmark  (cost=0.00..3127660.16 rows=100000016 width=137) (actual time=0.454..73226.662 rows=100000000 loops=1)
+   Output: d1, d2, d3, d4, d5, s1, s2, s3, s4, s5
+   Buffers: shared hit=160 read=2127500
+   I/O Timings: read=64583.670
+ Planning Time: 0.029 ms
+ Execution Time: 77399.581 ms
+(6 rows)
+
