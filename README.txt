@@ -1,3 +1,6 @@
-This repository contains the data for a blog article I wrote.
+Benchmarking read/write speed on Amazon Aurora, classic RDS and local disk
+==========================================================================
 
-TODO: Add link to article when it is published
+This repository contains the SQL scripts, installation procedure, and raw results of my benchmark.
+
+TODO: Add link to the article when it is published
