@@ -1,4 +1,4 @@
-On all EC2 machines with local disk:
+On all EC2 machines:
 # yum update
 # amazon-linux-extras install postgresql11
 # yum install postgresql-server
